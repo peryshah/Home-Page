@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  .controls {
+    margin-bottom: 20px;
+  }
+  
+  .controls button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  #board {
+    display: grid;
+    grid-template-columns: repeat(9, 40px);
+    grid-template-rows: repeat(9, 40px);
+    gap: 2px;
+    margin-bottom: 20px;
+  }
+  
+  #board div {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  #board div.fixed {
+    background-color: #d0d0d0;
+    cursor: default;
+  }
+  
+  /* Thick borders for every third row and column */
+  #board div:nth-child(3n) {
+    border-right: 3px solid #000;
+  }
+  
+  #board div:nth-child(n + 19):nth-child(-n + 27),
+  #board div:nth-child(n + 46):nth-child(-n + 54),
+  #board div:nth-child(n + 73):nth-child(-n + 81) {
+    border-bottom: 3px solid #000;
+  }
+  
+  #number-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 50px);
+    gap: 5px;
+    margin-top: 20px;
+    justify-content: center;
+  }
+  
+  #number-pad.hidden {
+    display: none;
+  }
+  
+  #number-pad .number {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+  
+  #number-pad .number.clear {
+    grid-column: span 3;
+    background-color: #ffcccc;
+  }
+  
+  #new-game {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  #timer {
+    margin-left: 20px;
+    font-size: 18px;
+    font-weight: bold;
+  }

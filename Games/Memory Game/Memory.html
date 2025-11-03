@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Memory Game - 52 Cards</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 { margin-bottom: 10px; }
+  #timer { font-size: 20px; margin-bottom: 20px; font-weight: bold; }
+  #game-board {
+    display: grid;
+    grid-template-columns: repeat(13, 70px);
+    grid-gap: 8px;
+    justify-content: center;
+  }
+  .card {
+    width: 70px;
+    height: 100px;
+    background: grey;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    user-select: none;
+  }
+  .card img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    display: none;
+  }
+  .card.flipped img {
+    display: block;
+  }
+  .card.flipped {
+    background: white;
+  }
+</style>
+</head>
+<body>
+<h1>Memory Game – 52 Cards</h1>
+<div id="timer">Time: 0s</div>
+<div id="game-board"></div>
+
+<script>
+const suits = ["hearts","diamonds","clubs","spades"];
+const ranks = ["ace","2","3","4","5","6","7","8","9","10","jack","queen","king"];
+let deck = [];
+
+// Build 52-card deck
+suits.forEach(suit => {
+  ranks.forEach(rank => {
+    deck.push({rank, suit, img: `cards/${rank}_of_${suit}.png`});
+  });
+});
+
+// Shuffle deck
+deck = deck.sort(() => Math.random() - 0.5);
+
+const board = document.getElementById("game-board");
+let flippedCards = [];
+let matchedCount = 0;
+
+// Timer
+let timerElement = document.getElementById("timer");
+let seconds = 0;
+let timerInterval = null;
+
+function startTimer() {
+  if (!timerInterval) {
+    timerInterval = setInterval(() => {
+      seconds++;
+      timerElement.textContent = `Time: ${seconds}s`;
+    }, 1000);
+  }
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+// Create cards
+deck.forEach((card, index) => {
+  const cardDiv = document.createElement("div");
+  cardDiv.classList.add("card");
+  cardDiv.dataset.rank = card.rank;
+  cardDiv.dataset.suit = card.suit;
+  cardDiv.dataset.index = index;
+
+  const img = document.createElement("img");
+  img.src = card.img;
+  cardDiv.appendChild(img);
+
+  cardDiv.addEventListener("click", () => flipCard(cardDiv));
+
+  board.appendChild(cardDiv);
+});
+
+function flipCard(cardDiv) {
+  if (cardDiv.classList.contains("flipped") || flippedCards.length === 2) return;
+
+  cardDiv.classList.add("flipped");
+  flippedCards.push(cardDiv);
+
+  if (flippedCards.length === 1) startTimer();
+
+  if (flippedCards.length === 2) checkMatch();
+}
+
+function checkMatch() {
+  const [c1, c2] = flippedCards;
+
+  if (c1.dataset.rank === c2.dataset.rank) {
+    matchedCount += 2;
+    flippedCards = [];
+    if (matchedCount === 52) {
+      stopTimer();
+      setTimeout(() => alert(`🎉 You won! Time: ${seconds}s`), 100);
+    }
+  } else {
+    setTimeout(() => {
+      c1.classList.remove("flipped");
+      c2.classList.remove("flipped");
+      flippedCards = [];
+    }, 1000);
+  }
+}
+</script>
+</body>
+</html>

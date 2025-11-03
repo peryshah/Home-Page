@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphical Cricket Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Graphical Cricket Game</h1>
+        <p>Click a number to hit. If it matches the ball number, you lose a wicket!</p>
+
+        <div id="pitch">
+            <div id="ball"></div>
+            <div id="bat"></div>
+        </div>
+
+        <div class="buttons">
+            <button onclick="play(0)">0</button>
+            <button onclick="play(1)">1</button>
+            <button onclick="play(2)">2</button>
+            <button onclick="play(3)">3</button>
+            <button onclick="play(4)">4</button>
+            <button onclick="play(6)">6</button>
+        </div>
+
+        <div class="scoreboard">
+            <p id="computerChoice">Ball Number: -</p>
+            <p id="runs">Runs: 0</p>
+            <p id="wickets">Wickets: 0</p>
+            <p id="overs">Overs: 0/2</p>
+            <p id="message"></p>
+        </div>
+
+        <button id="restart" onclick="restartGame()">Restart Game</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

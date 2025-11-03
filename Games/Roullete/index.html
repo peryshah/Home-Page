@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Multiplayer Roulette (Canvas)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🎡 Multiplayer Roulette</h1>
+
+  <!-- Step 1: choose player count -->
+  <section id="step-count" class="card">
+    <label for="playerCount">Number of players (1–10):</label>
+    <input id="playerCount" type="number" min="1" max="10" value="2" />
+    <button id="toNames">Next</button>
+  </section>
+
+  <!-- Step 2: names -->
+  <section id="step-names" class="card hidden">
+    <h2>Player names</h2>
+    <form id="nameForm" class="stack"></form>
+    <div class="row">
+      <button id="backToCount" class="secondary">Back</button>
+      <button id="toBets">Continue</button>
+    </div>
+  </section>
+
+  <!-- Step 3: bets + wheel -->
+  <section id="step-bets" class="hidden">
+    <div class="layout">
+      <div class="left">
+        <canvas id="wheel" width="520" height="520"></canvas>
+        <div class="pointer"></div>
+        <button id="spinBtn" disabled>Spin</button>
+        <div id="result" class="card"></div>
+
+        <div class="card">
+          <h3>Last 5 Results</h3>
+          <ul id="history" class="history"></ul>
+        </div>
+      </div>
+
+      <div class="right card">
+        <h2>Place bets (one per player)</h2>
+        <div id="bets" class="stack"></div>
+        <p class="muted">All players must place a bet before spinning.</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

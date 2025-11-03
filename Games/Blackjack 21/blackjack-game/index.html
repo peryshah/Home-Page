@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Blackjack Multiplayer</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Blackjack Multiplayer</h1>
+
+    <!-- SETUP -->
+    <section id="setup" class="card">
+      <label>Number of players (1–10)</label>
+      <input id="numPlayers" type="number" min="1" max="10" value="2" />
+      <button id="btnToNames" class="btn primary">Next</button>
+    </section>
+
+    <!-- NAMES -->
+    <section id="names" class="card hidden">
+      <h2>Enter player names</h2>
+      <div id="namesList"></div>
+      <div class="row">
+        <button id="btnBackSetup" class="btn">Back</button>
+        <button id="btnConfirmNames" class="btn primary">Confirm</button>
+      </div>
+    </section>
+
+    <!-- BETTING -->
+    <section id="betting" class="card hidden">
+      <h2>Place bets (click chips)</h2>
+      <div id="bettingArea" class="grid"></div>
+      <div class="chips-row">
+        <button class="chip" data-value="10">10</button>
+        <button class="chip" data-value="50">50</button>
+        <button class="chip" data-value="100">100</button>
+        <button class="chip" data-value="500">500</button>
+      </div>
+      <div class="row" style="margin-top:12px;">
+        <button id="btnDeal" class="btn primary" disabled>Deal Cards</button>
+      </div>
+    </section>
+
+    <!-- GAME -->
+    <section id="game" class="card hidden">
+      <div class="row top-row">
+        <div class="dealer-box">
+          <h3>Dealer</h3>
+          <div id="dealerHand" class="hand"></div>
+          <div id="dealerTotal" class="muted"></div>
+        </div>
+
+        <div class="controls-box">
+          <div id="turnIndicator" class="muted"></div>
+          <div class="row">
+            <button id="btnHit" class="btn" disabled>Hit</button>
+            <button id="btnStand" class="btn" disabled>Stand</button>
+            <button id="btnDouble" class="btn" disabled>Double Down</button>
+            <button id="btnSplit" class="btn" disabled>Split</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="playersArea" class="players-grid"></div>
+
+      <div id="results" class="card hidden">
+        <h3>Round Results</h3>
+        <div id="resultsList"></div>
+      </div>
+
+      <div class="row" style="margin-top:12px;">
+        <button id="btnNextRound" class="btn primary hidden">Next Round</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

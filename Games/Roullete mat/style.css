@@ -1,0 +1,348 @@
+:root {
+    --felt: #0b5f2a;
+    --felt-dark: #06361a;
+    --red: #c62828;
+    --black: #111;
+    --green: #1a7b3d;
+    --border: rgba(255, 255, 255, 0.12);
+    --muted: #cfdac8;
+    --chip-font: 11px;
+}
+
+/* ---------- Base ---------- */
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+body {
+    background: radial-gradient(circle, var(--felt) 0%, var(--felt-dark) 100%);
+    color: #fff;
+    padding: 14px;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px 0 20px;
+    color: var(--muted);
+}
+
+/* ---------- Helpers ---------- */
+.hidden {
+    display: none !important;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.14);
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+}
+
+.muted {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 13px;
+}
+
+/* ---------- Mat container ---------- */
+.mat-wrapper {
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.mat-grid {
+    /* columns: (zero) + 12 number columns + column bets column */
+    display: grid;
+    grid-template-columns: 84px repeat(12, 1fr) 90px;
+    /* rows: 3 rows for numbers, 1 dozens row, 1 bottom-bets row */
+    grid-template-rows: repeat(3, 72px) 72px 72px;
+    gap: 8px;
+    align-items: stretch;
+    position: relative;
+    padding: 6px;
+}
+
+/* ---------- Basic cell styles ---------- */
+.cell {
+    position: relative;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 18px;
+    cursor: pointer;
+    user-select: none;
+    min-height: 44px;
+    overflow: visible;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+/* Zero (left column spanning rows) */
+.cell.zero {
+    background: var(--green);
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+/* basic colors */
+.cell.red {
+    background: var(--red);
+    color: #fff;
+}
+
+.cell.black {
+    background: var(--black);
+    color: #fff;
+}
+
+/* nicer focus visuals */
+.cell:hover {
+    transform: translateY(-2px);
+    transition: transform 120ms ease;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.45);
+}
+
+.selected {
+    outline: 3px solid #ffd166;
+    box-shadow: 0 6px 20px rgba(255, 209, 102, 0.12);
+}
+
+.winner {
+    outline: 3px solid #6eff6e;
+    box-shadow: 0 8px 28px rgba(110, 255, 110, 0.18);
+}
+
+/* ---------- Place dozens & bottom inside grid explicitly ---------- */
+/* Dozens row: occupies columns 2..13 on row 4 */
+.dozens {
+    grid-column: 2 / span 12;
+    grid-row: 4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+/* Bottom bets row: occupies columns 2..13 on row 5 */
+.bottom-bets {
+    grid-column: 2 / span 12;
+    grid-row: 5;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+}
+
+/* ensure dozens/bottom cells inherit cell styling */
+.dozens .cell,
+.bottom-bets .cell {
+    min-height: 60px;
+    font-weight: 900;
+    background: rgba(0, 0, 0, 0.28);
+}
+
+/* Red/Black for bottom row specific override */
+.bottom-bets .red {
+    background: var(--red);
+    color: #fff;
+}
+
+.bottom-bets .black {
+    background: var(--black);
+    color: #fff;
+}
+
+/* ---------- Column bets on right side (2 TO 1) ---------- */
+/* Place by data-bet attribute to avoid nth-of-type fragility */
+.cell[data-bet="col1"] {
+    grid-column: 14;
+    grid-row: 3;
+    background: rgba(0, 0, 0, 0.28);
+}
+
+.cell[data-bet="col2"] {
+    grid-column: 14;
+    grid-row: 2;
+    background: rgba(0, 0, 0, 0.28);
+}
+
+.cell[data-bet="col3"] {
+    grid-column: 14;
+    grid-row: 1;
+    background: rgba(0, 0, 0, 0.28);
+}
+
+/* ---------- Chips container & markers ---------- */
+.chips-container {
+    position: absolute;
+    right: 6px;
+    bottom: 6px;
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    z-index: 20;
+    pointer-events: none;
+    /* prevents chips intercepting clicks */
+}
+
+/* marker for each player's chips inside a cell */
+.player-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: var(--chip-font);
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Player panel & chips row ---------- */
+.players-list-item {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px;
+    background: rgb(16, 14, 14);
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.player-name {
+    font-weight: 800;
+}
+
+.player-balance {
+    color: var(--muted);
+    margin-top: 4px;
+    font-size: 14px;
+}
+
+.chips {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.chip {
+    background: #ffd;
+    color: #082b18;
+    font-weight: 800;
+    padding: 8px 12px;
+    border-radius: 999px;
+    border: 2px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+}
+
+.chip.selected {
+    outline: 2px solid #ffd166;
+    box-shadow: 0 6px 16px rgba(255, 209, 102, 0.08);
+}
+
+/* bet badges in player panel */
+.bet-badge {
+    display: inline-block;
+    margin-right: 6px;
+    padding: 4px 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+/* ---------- Winner highlight and clearing visibility ---------- */
+.winner {
+    animation: winnerPulse 900ms ease-in-out;
+}
+
+@keyframes winnerPulse {
+    0% {
+        box-shadow: 0 0 0 rgba(110, 255, 110, 0.0);
+    }
+
+    50% {
+        box-shadow: 0 0 18px rgba(110, 255, 110, 0.28);
+    }
+
+    100% {
+        box-shadow: 0 0 0 rgba(110, 255, 110, 0.0);
+    }
+}
+
+/* make sure chips text is readable on dark backgrounds */
+.player-chip[style] {
+    color: #fff;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1000px) {
+    .mat-grid {
+        grid-template-rows: repeat(3, 62px) 62px 62px;
+        gap: 6px;
+    }
+
+    .cell {
+        font-size: 16px;
+    }
+
+    .dozens .cell,
+    .bottom-bets .cell {
+        min-height: 54px;
+    }
+}
+
+@media (max-width: 640px) {
+    .mat-grid {
+        grid-template-columns: 64px repeat(12, 1fr) 70px;
+        grid-template-rows: repeat(3, 48px) 48px 48px;
+        gap: 4px;
+    }
+
+    .cell {
+        font-size: 13px;
+        border-radius: 6px;
+    }
+
+    .chips-container {
+        right: 4px;
+        bottom: 4px;
+        gap: 4px;
+    }
+
+    .player-chip {
+        min-width: 22px;
+        height: 18px;
+        font-size: 10px;
+        padding: 0 4px;
+    }
+
+    .dozens .cell,
+    .bottom-bets .cell {
+        min-height: 44px;
+        font-size: 12px;
+    }
+}
+
+/* ---------- Debug helpers (can remove later) ---------- */
+.mat-grid[data-debug="1"] {
+    outline: 1px dashed rgba(255, 255, 255, 0.06);
+}

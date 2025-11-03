@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cricket Scoreboard (SPA) - Glass UI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">Cricket Scoreboard</div>
+      <nav class="tabs">
+        <button data-tab="setup" class="tab active">Match Setup</button>
+        <button data-tab="scorer" class="tab">Scoring Panel</button>
+        <button data-tab="live" class="tab">Live Scoreboard</button>
+      </nav>
+      <div class="actions">
+        <button id="exportBtn" class="ghost">Export JSON</button>
+        <button id="importBtn" class="ghost">Import JSON</button>
+        <input id="fileInput" type="file" accept="application/json" style="display:none"/>
+      </div>
+    </header>
+
+    <main class="content">
+      <!-- SETUP -->
+      <section id="setup" class="panel active-panel">
+        <div class="grid two">
+          <div class="card">
+            <h3>Teams & Players</h3>
+            <div class="row">
+              <input id="teamName" placeholder="New team name"/>
+              <button id="addTeam" class="btn">Add Team</button>
+            </div>
+
+            <div class="row" style="margin-top:10px;">
+              <select id="teamForPlayer">
+                <option value="">-- select team --</option>
+              </select>
+              <input id="playerName" placeholder="Player name"/>
+              <select id="playerRole">
+                <option value="batsman">Batsman</option>
+                <option value="bowler">Bowler</option>
+                <option value="allrounder">All-rounder</option>
+                <option value="keeper">Wicketkeeper</option>
+              </select>
+              <button id="addPlayer" class="btn">Add Player</button>
+            </div>
+
+            <div id="teamsList" class="list" style="margin-top:12px;"></div>
+          </div>
+
+          <div class="card">
+            <h3>Create Match</h3>
+            <div class="row">
+              <input id="matchTitle" placeholder="Match title (optional)"/>
+            </div>
+            <div class="row">
+              <select id="matchTeamA"><option value="">-- Team A --</option></select>
+              <select id="matchTeamB"><option value="">-- Team B --</option></select>
+            </div>
+            <div class="row">
+              <input id="venue" placeholder="Venue"/>
+              <input id="matchDate" type="date"/>
+            </div>
+            <div class="row">
+              <select id="matchFormat">
+                <option>T20</option><option>ODI</option><option>Test</option>
+              </select>
+              <input id="oversPerInnings" type="number" min="1" value="20"/>
+            </div>
+            <div class="row">
+              <button id="createMatch" class="btn">Create & Start Match</button>
+              <button id="createMatchDraft" class="ghost">Save as Draft</button>
+            </div>
+
+            <h4 style="margin-top:16px">Matches</h4>
+            <div id="matchesList" class="list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCORER -->
+      <section id="scorer" class="panel">
+        <div class="grid two">
+          <div class="card">
+            <h3>Live Scoring Controls</h3>
+            <div class="muted">Active Match</div>
+            <div id="activeMatchInfo" class="match-info">No active match</div>
+
+            <div class="row">
+              <label>Striker</label>
+              <select id="selectStriker"></select>
+            </div>
+            <div class="row">
+              <label>Non-Striker</label>
+              <select id="selectNonStriker"></select>
+            </div>
+            <div class="row">
+              <label>Bowler</label>
+              <select id="selectBowler"></select>
+              <select id="selectNextBowler"></select>
+            </div>
+
+            <div style="margin-top:10px">
+              <div class="muted">Runs</div>
+              <div class="runs-grid">
+                <button class="run" data-run="0">0</button>
+                <button class="run" data-run="1">1</button>
+                <button class="run" data-run="2">2</button>
+                <button class="run" data-run="3">3</button>
+                <button class="run" data-run="4">4</button>
+                <button class="run" data-run="6">6</button>
+              </div>
+            </div>
+
+            <div style="margin-top:10px">
+              <div class="muted">Extras</div>
+              <div class="row">
+                <button class="ghost extra" data-extra="wide">Wide</button>
+                <button class="ghost extra" data-extra="noball">No-ball</button>
+                <button class="ghost extra" data-extra="byes">Byes</button>
+                <button class="ghost extra" data-extra="legbyes">Leg Byes</button>
+              </div>
+            </div>
+
+            <div style="margin-top:10px">
+              <div class="muted">Wicket</div>
+              <div class="row">
+                <select id="wicketOutSelect"></select>
+                <select id="wicketType">
+                  <option>Bowled</option><option>Caught</option><option>LBW</option>
+                  <option>Run Out</option><option>Stumped</option><option>Hit Wicket</option>
+                </select>
+                <button id="recordWicket" class="danger">Record</button>
+              </div>
+            </div>
+
+            <div class="row" style="margin-top:12px;">
+              <button id="endInnings" class="btn">End Innings</button>
+              <button id="finishMatch" class="ghost">Finish Match</button>
+              <button id="undo" class="ghost">Undo</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Quick Stats</h3>
+            <div id="liveSummary" class="stat-block">No match</div>
+
+            <h4 style="margin-top:12px">Bowling Figures</h4>
+            <table id="bowlingTable">
+              <thead><tr><th>Bowler</th><th>O</th><th>M</th><th>R</th><th>W</th><th>Eco</th></tr></thead>
+              <tbody></tbody>
+            </table>
+
+            <h4 style="margin-top:12px">Ball-by-ball</h4>
+            <div id="commentary" class="commentary"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LIVE -->
+      <section id="live" class="panel">
+        <div class="grid two">
+          <div class="card">
+            <div class="header-row">
+              <div>
+                <div id="liveMatchTitle" class="muted">No match</div>
+                <div id="liveScoreBig" class="score-big">0/0</div>
+                <div id="liveOvers" class="sub">0.0 overs • RR: 0.00</div>
+              </div>
+              <div class="meta">
+                <div id="liveMeta">—</div>
+                <div id="liveStatus">Status: Idle</div>
+              </div>
+            </div>
+
+            <h4 style="margin-top:12px">Batting Scorecard</h4>
+            <table id="battingTable">
+              <thead><tr><th>Player</th><th>R</th><th>B</th><th>4s</th><th>6s</th><th>SR</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <h4>Match Info</h4>
+            <div id="matchDetails" class="muted">—</div>
+            <h4 style="margin-top:12px">Recent Events</h4>
+            <div id="recentEvents" class="commentary"></div>
+            <h4 style="margin-top:12px">Past Matches</h4>
+            <div id="pastMatches" class="list"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">Frontend-only • Glass UI • Data in localStorage</footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

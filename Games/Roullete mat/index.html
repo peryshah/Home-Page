@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Roulette Multiplayer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Roulette Multiplayer</h1>
+
+    <!-- Setup -->
+    <div id="setup">
+        <label>Number of Players:
+            <input type="number" id="playerCount" min="1" max="10" value="2">
+        </label>
+        <button id="toNames">Next</button>
+    </div>
+
+    <!-- Names -->
+    <div id="names" class="hidden">
+        <h2>Enter Player Names and Bankroll</h2>
+        <div id="namesList"></div>
+        <button id="backToSetup">Back</button>
+        <button id="confirmNames">Start Game</button>
+    </div>
+
+    <!-- Game Table -->
+    <div id="tableArea" class="hidden">
+        <section class="mat-wrapper card">
+            <div id="roulette-mat" class="mat-grid">
+                <!-- Dozens row -->
+                <div class="dozens">
+                    <div class="cell dozen" data-bet="1st12">1ST 12</div>
+                    <div class="cell dozen" data-bet="2nd12">2ND 12</div>
+                    <div class="cell dozen" data-bet="3rd12">3RD 12</div>
+                </div>
+
+                <!-- Bottom bets row -->
+                <div class="bottom-bets">
+                    <div class="cell bottom" data-bet="1to18">1 TO 18</div>
+                    <div class="cell bottom" data-bet="even">EVEN</div>
+                    <div class="cell bottom red" data-bet="red">RED</div>
+                    <div class="cell bottom black" data-bet="black">BLACK</div>
+                    <div class="cell bottom" data-bet="odd">ODD</div>
+                    <div class="cell bottom" data-bet="19to36">19 TO 36</div>
+                </div>
+
+                <!-- Column bets on right side -->
+                <div class="cell column" data-bet="col1">2 TO 1</div>
+                <div class="cell column" data-bet="col2">2 TO 1</div>
+                <div class="cell column" data-bet="col3">2 TO 1</div>
+            </div>
+        </section>
+
+        <div id="playersPanel">
+            <h2>Players</h2>
+            <div id="playersList"></div>
+            <p><strong>Active Player:</strong> <span id="activePlayer"></span></p>
+            <div class="chips">
+                <button class="chip" data-value="10">$10</button>
+                <button class="chip" data-value="50">$50</button>
+                <button class="chip" data-value="100">$100</button>
+                <input type="number" id="customChip" placeholder="Custom">
+                <button id="setCustom">Set</button>
+            </div>
+            <button id="confirmPlayerBets" disabled>Confirm Bets</button>
+        </div>
+
+        <div id="dealerPanel">
+            <h2>Dealer</h2>
+            <label>Winning Number:
+                <input type="number" id="winningNumber" min="0" max="36">
+            </label>
+            <button id="resolveBtn">Guess The Winner</button>
+        </div>
+
+        <div id="roundResults" class="hidden">
+            <h2>Round Results</h2>
+            <div id="resultsList"></div>
+        </div>
+        <button id="nextRoundBtn" class="hidden">Next Round</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
