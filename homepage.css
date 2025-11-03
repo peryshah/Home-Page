@@ -1,0 +1,269 @@
+body {
+    background-color: rgb(68, 78, 102);
+    font-family: Arial, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+
+#main-container {
+    display: flex;
+    width: 100vw;
+    height: 60vh;
+    justify-content: space-between;
+}
+
+#clock-container {
+    width: 20vw;
+    text-align: center;
+    background-color: #5355eb;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#clock {
+    font-size: 4em;
+    font-weight: bolder;
+    color: #000000;
+    margin-top: 40%;
+}
+
+#calendar-container {
+    width: 40vw;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.calendar-day {
+    background-color: #ddd;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.calendar-day.selected {
+    background-color: #ffeb3b; /* Highlight for selected day */
+}
+
+.calendar-day.today {
+    border: 2px solid rgb(241, 236, 241);
+    box-shadow: 0 0 10px rgba(232, 14, 232, 0.6);
+    color: rgba(255, 0, 0, 0.6);
+}
+
+.event-dot {
+    width: 16px;
+    height: 2px;
+    background-color: red;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#event-container {
+    width: 40vw;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* For positioning the button container */
+}
+
+#eventInput {
+    width: 75%;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+#addEventBtn {
+    width: 20%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 5%;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#event-input-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Event List Styling */
+.event-list {
+    background-color: #e0f7fa; /* Highlighted background for event list */
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+/* Additional CSS for button styling and positioning */
+.event-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.event-item.done span {
+    text-decoration: line-through;
+}
+
+.event-item button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.event-item button.done-btn {
+    background-color: #4caf50;  /* Green background for "Done" button */
+    color: white;
+}
+
+.event-item button.delete-btn {
+    background-color: #f44336;  /* Red background for "Delete" button */
+    color: white;
+}
+
+/* New container for event action buttons */
+.event-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+.links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0px;
+}
+.links a {
+    color: #fff;
+    font-size: larger;
+    text-decoration: none;
+   
+}
+
+.cbi {
+    width: 100vw;
+    min-height: 30vw;
+    /* background-color: #6591f1; */
+}
+
+.cbi a {
+    padding: 3px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.cbi a img {
+    width: 20vw;
+    margin: 30px;
+
+
+}
+
+.cbi th {
+    border: 2px solid black;
+    padding: 0px 6.6vw;
+    font-size: 1vw;
+}
+
+.cbi td {
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+tr:nth-child(even) {
+    color: #fff;
+}
+
+tr:nth-child(odd) {
+    background-color: #2f2f35;
+    color: #fff;
+}
+
+
+.table2 {
+    width: 100vw;
+    min-height: 30vw;
+    /* background-color: #6591f1; */
+}
+
+table {
+    width: 100%;
+}
+
+.table2 a {
+    padding: 3px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.table2 a img {
+    width: 10vw;
+
+
+}
+
+.table2 th {
+    border: 2px solid black;
+    padding: 0px 6.6vw;
+    font-size: 1.5vw;
+}
+
+.table2 td {
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+
+
+
+
+
+
+/* CSS for Games////////////////////////////////////////////////////////////////////////////// */
+
+
+/* CSS for SUDUKU Starts.................................................................. */
+

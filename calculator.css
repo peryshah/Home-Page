@@ -1,0 +1,124 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #000;
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.calculator {
+    width: 375px;
+    /* Adjusted width to match iPhone calculator */
+    height: 580px;
+    /* Adjusted height to match iPhone calculator */
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background-color: #333;
+    padding: 20px;
+    /* Padding to better match the look */
+}
+
+.display {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px;
+    background-color: #1c1c1c;
+    border-radius: 20px;
+    /* Rounded corners for display */
+    margin-bottom: 20px;
+    /* Spacing below the display */
+}
+
+.display input {
+    width: 100%;
+    font-size: 2.5em;
+    text-align: right;
+    border: none;
+    background-color: #1c1c1c;
+    color: #fff;
+    padding: 10px;
+    /* Padding inside the display for better spacing */
+    box-sizing: border-box;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    /* Gap between buttons */
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    border: none;
+    background-color: #505050;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s, transform 0.1s;
+    border-radius: 50%;
+    /* Rounded buttons */
+    box-shadow: 0 2px rgba(0, 0, 0, 0.2);
+    height: 75px;
+    /* Consistent button height */
+}
+
+.btn:hover {
+    background-color: #696969;
+}
+
+.btn:active {
+    transform: scale(0.95);
+    /* Button press effect */
+}
+
+.zero-btn {
+    grid-column: span 2;
+    border-radius: 50px;
+    /* Adjusted for wide button */
+    height: 75px;
+    /* Adjusted height */
+}
+
+.equal-btn {
+    background-color: #ff9500;
+    color: white;
+    border-radius: 50%;
+    height: 75px;
+    /* Consistent button height */
+}
+
+.equal-btn:hover {
+    background-color: #e58e00;
+}
+
+.operator-btn {
+    background-color: #ff9500;
+    color: white;
+    border-radius: 50%;
+    height: 75px;
+    /* Consistent button height */
+}
+
+.operator-btn:hover {
+    background-color: #e58e00;
+}
+
+.clear-btn {
+    background-color: #d4d4d2;
+    color: black;
+    border-radius: 50%;
+    height: 75px;
+    /* Consistent button height */
+}
+
+.clear-btn:hover {
+    background-color: #c7c7cc;
+}
