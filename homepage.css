@@ -10,7 +10,7 @@ body {
 #main-container {
     display: flex;
     width: 100vw;
-    height: 60vh;
+    height: auto;
     justify-content: space-between;
 }
 
@@ -18,12 +18,12 @@ body {
     width: 20vw;
     text-align: center;
     background-color: #5355eb;
-    padding: 20px;
+    padding-top: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #clock {
-    font-size: 4em;
+    font-size: 5vw;
     font-weight: bolder;
     color: #000000;
     margin-top: 40%;
@@ -56,7 +56,9 @@ body {
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 5px;
     margin-top: 10px;
+    height: auto;
     font-weight: bold;
+    /* font-size: 1.5%; */
 }
 
 .calendar-day {
@@ -68,7 +70,8 @@ body {
 }
 
 .calendar-day.selected {
-    background-color: #ffeb3b; /* Highlight for selected day */
+    background-color: #ffeb3b;
+    /* Highlight for selected day */
 }
 
 .calendar-day.today {
@@ -92,7 +95,8 @@ body {
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative; /* For positioning the button container */
+    position: relative;
+    /* For positioning the button container */
 }
 
 #eventInput {
@@ -120,7 +124,8 @@ body {
 
 /* Event List Styling */
 .event-list {
-    background-color: #e0f7fa; /* Highlighted background for event list */
+    background-color: #e0f7fa;
+    /* Highlighted background for event list */
     padding: 10px;
     margin-top: 10px;
     border-radius: 5px;
@@ -148,19 +153,22 @@ body {
 }
 
 .event-item button.done-btn {
-    background-color: #4caf50;  /* Green background for "Done" button */
+    background-color: #4caf50;
+    /* Green background for "Done" button */
     color: white;
 }
 
 .event-item button.delete-btn {
-    background-color: #f44336;  /* Red background for "Delete" button */
+    background-color: #f44336;
+    /* Red background for "Delete" button */
     color: white;
 }
 
 /* New container for event action buttons */
 .event-buttons {
     display: flex;
-    justify-content: flex-end; /* Align buttons to the right */
+    justify-content: flex-end;
+    /* Align buttons to the right */
     margin-top: 10px;
 }
 
@@ -176,11 +184,12 @@ body {
     justify-content: space-around;
     margin: 30px 0px;
 }
+
 .links a {
     color: #fff;
-    font-size: larger;
+    font-size: 2vw;
     text-decoration: none;
-   
+
 }
 
 .cbi {
@@ -266,4 +275,3 @@ table {
 
 
 /* CSS for SUDUKU Starts.................................................................. */
-
