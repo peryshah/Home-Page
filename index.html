@@ -90,43 +90,28 @@
 
     </div>
 
-    <!-- This is the container for Clock, Calendar, Events -->
-    <div id="main-container">
-        <!-- Clock Container -->
-        <div id="clock-container">
+    <div id="time-container" class="time-container"></div>
 
-            <div id="clock">--:--:-- AM</div>
+
+
+    <div class="calendar">
+        <div class="calendar-header">
+            <div class="left-controls">
+                <button id="prev-month">◀</button>
+                <button id="today-btn">Today</button>
+                <button id="next-month">▶</button>
+            </div>
+            <div id="month-year" class="month-year"></div>
+            <div class="right-controls">
+                <button id="event-list-btn">Event List</button>
+            </div>
         </div>
 
-        <!-- Calendar Container -->
-        <div id="calendar-container">
-            <div id="calendar-header">
-                <button id="prevMonthBtn">&lt;</button>
-                <h2 id="monthYear">Month Year</h2>
-                <button id="nextMonthBtn">&gt;</button>
-            </div>
-            <div id="weekdays">
-                <div>Sun</div>
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thu</div>
-                <div>Fri</div>
-                <div>Sat</div>
-            </div>
-            <div id="calendar-days"></div>
-        </div>
 
-        <!-- Event Container -->
-        <div id="event-container">
-            <h3>Events for <span id="selectedDate">Selected Date</span></h3>
-            <div id="event-input-section">
-                <input type="text" id="eventInput" placeholder="Add new event">
-                <button id="addEventBtn">Add Event</button>
-            </div>
-            <div id="eventList" class="event-list"></div>
-        </div>
+
+        <div id="calendar-body" class="calendar-body"></div>
     </div>
+
 
 
     <!-- This is the container for ToDoList module -->
@@ -139,7 +124,7 @@
 
 
     <div class="cbi">
-        <a href="https://centeez.centralbank.co.in" target="_blank">
+        <a href="https://www.centralbank.net.in/#/" target="_blank">
             <img alt="Central Bank of India"
                 src="https://logos-download.com/wp-content/uploads/2022/11/Central_Bank_of_India_Logo.png">
         </a>
@@ -226,7 +211,7 @@
     </div>
     <div class="table2">
         <div class="torrent">
-            <a href="https://connect.torrentpower.com/tplcp/preloginpaynow" target="_blank">
+            <a href="https://connect.torrentpower.com/tplcp/index.php/CrCustmast/quickpay" target="_blank">
                 <img alt="Torrent Power"
                     src="https://companieslogo.com/img/orig/TORNTPOWER.NS-7bfc1a00.png?t=1667550767" width="80"
                     height="80">
@@ -261,19 +246,31 @@
                     <td>100395218</td>
                 </tr>
                 <tr>
-                    <td>TarunBhai</td>
+                    <td>KetanBhai</td>
                     <td>100366031</td>
                 </tr>
                 <tr>
-                    <td>JivanBhai</td>
+                    <td>JivanBhai Shop</td>
                     <td>100165414</td>
                 </tr>
                 <tr>
-                    <td>Bhargav Ajit</td>
-                    <td>222184</td>
+                    <td>RameshBhai Shop</td>
+                    <td>731232</td>
+                </tr>
+                <tr>
+                    <td>ManojBhai Shop</td>
+                    <td>100865062</td>
+                </tr>
+                <tr>
+                    <td>BabuBhai Shop</td>
+                    <td>302212</td>
                 </tr>
                 <tr>
                     <td>PrashantBhai Ajit</td>
+                    <td>222184</td>
+                </tr>
+                <tr>
+                    <td>UtpalBhai Ajit</td>
                     <td>222198</td>
                 </tr>
                 <tr>
@@ -290,19 +287,19 @@
                 </tr>
                 <tr>
                     <td>A/236 Ghantakaran Market</td>
-                    <td>186526</td>
+                    <td>2179973</td>
                 </tr>
                 <tr>
                     <td>A/240 Ghantakaran Market</td>
-                    <td>186526</td>
+                    <td>2179969</td>
                 </tr>
                 <tr>
                     <td>B/322 Ghantakaran Market</td>
-                    <td>186526</td>
+                    <td>2184419</td>
                 </tr>
                 <tr>
                     <td>C/27 Ghantakaran Market</td>
-                    <td>186526</td>
+                    <td>2174652</td>
                 </tr>
 
             </table>
@@ -312,7 +309,9 @@
 
 
 
-
+    <footer class="footer">
+        <p>Last updated 5/11/2025</p>
+    </footer>
 
 
 
@@ -326,23 +325,7 @@
 
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="homepage.js"></script>
-
-
-
 
 </body>
 
