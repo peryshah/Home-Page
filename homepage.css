@@ -89,6 +89,7 @@ body {
 /* Calendar grid */
 .calendar-body {
     width: 90%;
+     height: 100%;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-auto-rows: 80px;
